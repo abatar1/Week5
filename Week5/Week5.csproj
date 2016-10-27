@@ -43,11 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="5_2\ITableProcessor.cs" />
+    <Compile Include="5_2\TableProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Transaction.cs" />
-    <Compile Include="Processor.cs" />
-    <Compile Include="TransactionRequest.cs" />
+    <Compile Include="5_1\Transaction.cs" />
+    <Compile Include="5_1\Processor.cs" />
+    <Compile Include="5_1\TransactionRequest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
