@@ -50,6 +50,8 @@ namespace Week5
             {
                 if (columnIndex > columnCount)
                     table[i].AddRange(Enumerable.Repeat(default(TType), columnIndex - columnCount));
+                else
+                    table[i].Insert(columnIndex, default(TType));
             }
             columnCount++;
         }
@@ -59,7 +61,9 @@ namespace Week5
             OnLogger(new LoggerEventArgs("InsertRow"));
 
             if (rowIndex > rowCount)
-                table.AddRange(Enumerable.Repeat(new List<TType>(), rowIndex - rowCount));                       
+                table.AddRange(Enumerable.Repeat(new List<TType>(), rowIndex - rowCount));    
+            else                   
+                table.Insert(rowIndex, new List<TType>());
             rowCount++;
         }
 
