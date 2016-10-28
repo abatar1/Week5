@@ -45,7 +45,7 @@
   <ItemGroup>
     <Compile Include="5_2\Logger.cs" />
     <Compile Include="5_2\LoggerEventArgs.cs" />
-    <Compile Include="5_2\TableProcessor.cs" />
+    <Compile Include="5_2\DataTable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="5_1\Processor.cs" />
