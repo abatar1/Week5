@@ -22,8 +22,6 @@ namespace Week5
 
         private bool ValueInRange(int row, int column)
         {
-            OnLogger(new LoggerEventArgs("ValueInRange"));
-
             return (row < rowCount && column < columnCount) ? true : false;
         }
 
