@@ -1,15 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Week5
+﻿namespace Week5
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
+            DataTable<int> table = new DataTable<int>();
+            Logger logger = new Logger();
+            logger.AddLogger(table);
+            table.InsertColumn(1);
+            table.InsertRow(2);
         }
     }
 }

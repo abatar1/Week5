@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Week5
 {
-    public class DataTable<T>
+    public class DataTable<TType>
     {
-        private List<List<T>> table;       
+        private List<List<TType>> table;
 
-        private int rowCount = 0;
-        private int columnCount = 0;
+        private int rowCount;
+        private int columnCount;
 
         public event EventHandler<LoggerEventArgs> LoggerEvent;
+
+        public DataTable()
+        {
+            table = new List<List<TType>>();
+            rowCount = 0;
+            columnCount = 0;
+        }
 
         private bool ValueInRange(int row, int column)
         {
@@ -19,7 +27,7 @@ namespace Week5
             return (row < rowCount && column < columnCount) ? true : false;
         }
 
-        public T Get(int row, int column)
+        public TType Get(int row, int column)
         {
             OnLogger(new LoggerEventArgs("Get"));
 
@@ -33,23 +41,31 @@ namespace Week5
         {
             OnLogger(new LoggerEventArgs("InsertColumn"));
 
-            columnCount++;
-            if (rowCount == 0) rowCount++;
-            foreach (var cell in table)
+            if (rowCount == 0)
             {
-                cell.Insert(columnIndex, default(T));
+                table.Add(new List<TType>());
+                rowCount++;
             }
+            for (int i = 0; i < rowCount; i++)
+            {
+                if (columnIndex > columnCount)
+                    table[i].AddRange(Enumerable.Repeat(default(TType), columnIndex - columnCount));
+                table[i].Insert(columnIndex, default(TType));
+            }
+            columnCount++;
         }
 
         public void InsertRow(int rowIndex)
         {
             OnLogger(new LoggerEventArgs("InsertRow"));
 
+            if (rowIndex > rowCount)
+                table.AddRange(Enumerable.Repeat(new List<TType>(), rowIndex - rowCount));                       
+            table.Insert(rowIndex, new List<TType>());
             rowCount++;
-            table.Insert(rowIndex, default(List<T>));
         }
 
-        public void Put(int row, int column, T value)
+        public void Put(int row, int column, TType value)
         {
             OnLogger(new LoggerEventArgs("Put"));
 
