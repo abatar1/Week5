@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="5_2\IDataTable.cs" />
     <Compile Include="5_2\Logger.cs" />
     <Compile Include="5_2\LoggerEventArgs.cs" />
     <Compile Include="5_2\DataTable.cs" />

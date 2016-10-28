@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Week5
 {
-    public class DataTable<TType>
+    public class DataTable<TType> : IDataTable<TType>
     {
         private List<List<TType>> table;
 
@@ -25,6 +25,14 @@ namespace Week5
             OnLogger(new LoggerEventArgs("ValueInRange"));
 
             return (row < rowCount && column < columnCount) ? true : false;
+        }
+
+            where TContainer : List<TFiller>
+        {
+            var containerSize = container.Count();
+            if (insertIndex > containerSize)
+            else
+                container.Insert(containerSize, filler);
         }
 
         public TType Get(int row, int column)
@@ -48,10 +56,6 @@ namespace Week5
             }
             for (int i = 0; i < rowCount; i++)
             {
-                if (columnIndex > columnCount)
-                    table[i].AddRange(Enumerable.Repeat(default(TType), columnIndex - columnCount));
-                else
-                    table[i].Insert(columnIndex, default(TType));
             }
             columnCount++;
         }
@@ -60,10 +64,6 @@ namespace Week5
         {
             OnLogger(new LoggerEventArgs("InsertRow"));
 
-            if (rowIndex > rowCount)
-                table.AddRange(Enumerable.Repeat(new List<TType>(), rowIndex - rowCount));    
-            else                   
-                table.Insert(rowIndex, new List<TType>());
             rowCount++;
         }
 
