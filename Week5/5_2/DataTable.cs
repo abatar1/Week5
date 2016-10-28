@@ -27,10 +27,12 @@ namespace Week5
             return (row < rowCount && column < columnCount) ? true : false;
         }
 
+        private void InsertWithExtension<TContainer, TFiller>(TContainer container, TFiller filler, int insertIndex)
             where TContainer : List<TFiller>
         {
             var containerSize = container.Count();
             if (insertIndex > containerSize)
+                container.AddRange(Enumerable.Repeat(filler, insertIndex - containerSize));
             else
                 container.Insert(containerSize, filler);
         }
@@ -56,6 +58,7 @@ namespace Week5
             }
             for (int i = 0; i < rowCount; i++)
             {
+                InsertWithExtension(table[i], default(TType), columnIndex);
             }
             columnCount++;
         }
@@ -64,6 +67,7 @@ namespace Week5
         {
             OnLogger(new LoggerEventArgs("InsertRow"));
 
+            InsertWithExtension(table, new List<TType>(), rowIndex);
             rowCount++;
         }
 
