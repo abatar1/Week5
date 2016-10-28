@@ -7,7 +7,6 @@ namespace Week5
         public static void MethodInvoked(object sender, LoggerEventArgs e)
         {
             Console.WriteLine(e.ToString());
-            Environment.Exit(0);
         }
     }
 }
