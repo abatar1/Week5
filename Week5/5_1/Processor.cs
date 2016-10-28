@@ -4,6 +4,13 @@ namespace Week5
 {
     public class Processor<T, TRequest>
     {
+        public Processor(Func<TRequest, bool> check, Func<TRequest, T> register, Action<T> save)
+        {
+            Check = check;
+            Register = register;
+            Save = save;
+        }
+
         public T Process(TRequest request)
         {
             if (!Check(request))
@@ -13,8 +20,8 @@ namespace Week5
             return result;
         }
 
-        public Func<TRequest, bool> Check;
-        public Func<TRequest, T> Register;
-        public Action<T> Save;
+        private Func<TRequest, bool> Check;
+        private Func<TRequest, T> Register;
+        private Action<T> Save;
     }
 }
