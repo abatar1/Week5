@@ -37,7 +37,7 @@ namespace Week5
 
         public TType Get(int row, int column)
         {
-            OnLogger(new LoggerEventArgs("Get"));
+            OnLogger("Get", "row " + row.ToString() + "and column " + column.ToString());
 
             if (ValueInRange(row, column))
                 return table[row][column];
@@ -47,7 +47,7 @@ namespace Week5
 
         public void InsertColumn(int columnIndex)
         {
-            OnLogger(new LoggerEventArgs("InsertColumn"));
+            OnLogger("InsertColumn", "column " + columnIndex.ToString());
 
             if (rowCount == 0)
             {
@@ -63,7 +63,7 @@ namespace Week5
 
         public void InsertRow(int rowIndex)
         {
-            OnLogger(new LoggerEventArgs("InsertRow"));
+            OnLogger("InsertRow", "row " + rowIndex.ToString());
 
             InsertWithExtension(table, new List<TType>(), rowIndex);
             rowCount++;
@@ -71,7 +71,7 @@ namespace Week5
 
         public void Put(int row, int column, TType value)
         {
-            OnLogger(new LoggerEventArgs("Put"));
+            OnLogger("Put", "row " + row.ToString() + " column " + column.ToString() + " value " + value.ToString());
 
             if (ValueInRange(row, column))
                 table[row][column] = value;
@@ -79,8 +79,9 @@ namespace Week5
                 throw new IndexOutOfRangeException();
         }
 
-        protected virtual void OnLogger(LoggerEventArgs e)
+        protected virtual void OnLogger(string name, string act)
         {
+            var e = new LoggerEventArgs(name, act);
             LoggerEvent?.Invoke(this, e);
         }
     }

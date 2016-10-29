@@ -6,16 +6,20 @@ namespace Week5
     {
         private string methodName;
         private DateTime time;
+        private string subject;
 
-        public LoggerEventArgs(string methodName)
+        public LoggerEventArgs(string methodName, string act)
         {
-            this.methodName = methodName;
+            this.methodName = methodName;            
             this.time = DateTime.Now;
+            this.subject = act;
         }
 
         public override string ToString()
         {
-            return methodName.ToString() + " at " + time.ToString();
+            return "User did " + methodName.ToString() + 
+                " with " + subject.ToString() + 
+                " at " + time.ToString();
         }
     }
 }
