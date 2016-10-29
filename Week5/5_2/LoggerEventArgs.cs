@@ -8,11 +8,11 @@ namespace Week5
         private DateTime time;
         private Position pos;
 
-        public LoggerEventArgs(string methodName, int row = 0, int column = 0)
+        public LoggerEventArgs(string methodName, Position pos)
         {
             this.methodName = methodName;            
             this.time = DateTime.Now;
-            this.pos = new Position(row, column);
+            this.pos = new Position(pos);
         }
 
         public override string ToString()
@@ -22,25 +22,4 @@ namespace Week5
                 " at " + time.ToString();
         }
     }
-
-    internal class Position
-    {
-        private int row;
-        private int column;
-
-        internal Position(int row, int column)
-        {
-            this.row = row;
-            this.column = column;
-        }
-
-        public override string ToString()
-        {
-            string result = "";
-            if (row != 0) result += "row = " + row.ToString() + " ";
-            if (column != 0) result += "column = " + column.ToString();
-            return result;
-        }
-    }
-
 }

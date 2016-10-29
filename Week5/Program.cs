@@ -8,7 +8,7 @@
             Logger logger = new Logger();
             logger.AddLogger(table);
             table.InsertColumn(1);
-            table.InsertRow(2);
+            table.InsertRow(2);            
         }
     }
 }
